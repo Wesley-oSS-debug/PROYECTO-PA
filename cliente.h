@@ -13,13 +13,14 @@ class Cliente{
 		string direccion;
 		string telefono;
 		string correo;
-		CuentaBancaria* cuentas;
+		int nCuentas;
+		CuentaBancaria* cuentas[10];
 	public:
 		Cliente();
 		void asignarCuenta();
 		void mostrarCliente();
 		void guardarCliente();
-		void cargarCliente(ifstream&);
+		void cargarCliente(ifstream&,ifstream&);
 		void asignarCliente();
 };
 

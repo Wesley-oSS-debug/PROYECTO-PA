@@ -1,5 +1,6 @@
 #include "funciones.h"
 #include "cliente.h"
+#include "cuentas.h"
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -14,24 +15,32 @@ int nClientes() {
 		n++;
 	}
 	archivo.close();
+	
 	return n;
 }
-void registrarClientes(Cliente obj[],int n) {
+void registrarClientes(Cliente obj[],int &n) {
 	system("cls");
 	obj[n].asignarCliente();
-	//obj[n].asignarCuenta();
 	obj[n].guardarCliente();
 	n++;
+	cout<<"numero cliente: "<<n<<endl;
 	system("pause");
 }
 //cargar clientes del txt
 void cargar(Cliente obj[],int n) {
 	ifstream archivo;
+	ifstream archivo2;
+	//cargar Clientes / Cuentas
+	archivo2.open("cuentasB.txt");
 	archivo.open("clientes.txt");
+
 	for (int i=0;i<n;i++) {
-		obj[i].cargarCliente(archivo);
+		obj[i].cargarCliente(archivo,archivo2);
 	}
+	
 	archivo.close();
+	archivo2.close();
+
 	
 }
 

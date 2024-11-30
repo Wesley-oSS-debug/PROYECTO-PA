@@ -2,6 +2,7 @@
 #define CUENTAS_H
 #include <string>
 
+
 using namespace std;
 
 class CuentaBancaria{
@@ -12,7 +13,11 @@ class CuentaBancaria{
 		long int numero;
 	public:
 		CuentaBancaria(string,string);
+		string obtenerTipo();
+		string obtenerMoneda();
+		int obtenerNumero();
 		void mostrarCuenta();
+		void asignarNumero(int);
 };
 
 
