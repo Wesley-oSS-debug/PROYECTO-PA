@@ -3,25 +3,24 @@
 #include <fstream>
 #include "funciones.h"
 
-
 using namespace std;
 int main() {
 	
 	int op;
 	Cliente obj[1000];
+	int n=nClientes(); //numero de clientes
 	
-	
-	
-	int n=nClientes();
-
+	//si hay clientes en el archivo cargar datos
 	if (n>0) {
 		cargar(obj,n);
 	}
 	
+	//MENU PRINCIPAL
 	do{
-		//system("cls");
+		system("cls");
 		//prueba n
 		cout<<"n: "<<n<<endl;
+		
 		cout<<"\tGESTION BANCARIA"<<endl
 			<<"1. Registrar Cliente"<<endl
 			<<"2. Listar Clientes"<<endl
