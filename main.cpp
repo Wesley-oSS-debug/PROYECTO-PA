@@ -3,23 +3,26 @@
 #include <fstream>
 #include "funciones.h"
 
+
 using namespace std;
 int main() {
 	
 	int op;
-	Cliente obj[10000];
-	int n;
-	n=nClientes();
-	//prueba n
-	cout<<"n: "<<n<<endl;
+	Cliente obj[1000];
+
+	
+	
+	int n=nClientes();
+
 	
 	if (n>0) {
 		cargar(obj,n);
 	}
 	
-	
 	do{
 		//system("cls");
+		//prueba n
+		cout<<"n: "<<n<<endl;
 		cout<<"\tGESTION BANCARIA"<<endl
 			<<"1. Registrar Cliente"<<endl
 			<<"2. Listar Clientes"<<endl
