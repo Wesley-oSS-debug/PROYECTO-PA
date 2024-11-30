@@ -54,3 +54,45 @@ void listarClientes(Cliente obj[],int n) {
 
 	system("pause");
 }
+
+void depositar(Cliente obj[],int n) {
+	int selec,indice;
+	cout<<"Clientes:\n"<<endl;
+	for (int i=0;i<n;i++) {
+		cout<<"Cliente ["<<i+1<<"]:\n"<<endl;
+		obj[i].mostrarCliente();
+	}
+	cout<<"Seleccione un cliente: "; cin>>selec;
+	indice=selec-1;
+	cout<<"Cliente seleccionado"<<endl;
+	obj[indice].asignarDinero();
+	
+	//eliminar datos
+	remove("cuentasB.txt");
+	remove("clientes.txt");
+	//guardar datos actualizados
+	for (int i=0;i<n;i++) {
+		obj[i].guardarCliente();
+	}
+	
+}
+
+void operaciones(Cliente obj[],int n) {
+	int op;
+	cout<<"OPERACIONES"<<endl
+		<<"1. Depositar dinero a una cuenta"<<endl
+		<<"2. Retirar dinero de una cuenta"<<endl
+		<<"3. Volver al menu"<<endl
+		<<"Ingrese una opcion: "; cin>>op;
+	switch (op) {
+		case 1:
+			depositar(obj,n);
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		default:
+			cout<<"Ingrese una opcion valida"<<endl;
+	}
+}

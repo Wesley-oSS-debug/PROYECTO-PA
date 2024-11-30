@@ -7,6 +7,7 @@ using namespace std;
 CuentaBancaria::CuentaBancaria(string _tipo,string _moneda) {
 	tipo=_tipo;
 	moneda=_moneda;
+	saldo=0;
 }
 
 void CuentaBancaria::asignarNumero(int num) {
@@ -31,5 +32,13 @@ string CuentaBancaria::obtenerMoneda() {
 
 int CuentaBancaria::obtenerNumero() {
 	return numero;
+}
+
+void CuentaBancaria::asignarSaldo(float _saldo) {
+	saldo+=_saldo;
+}
+
+float CuentaBancaria::obtenerSaldo() {
+	return saldo;
 }
 
