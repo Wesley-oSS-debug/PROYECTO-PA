@@ -9,7 +9,7 @@ class CuentaBancaria{
 		string tipo;
 		string moneda;
 		float saldo;
-		string numero;
+		long int numero;
 	public:
 		CuentaBancaria(string,string);
 		void mostrarCuenta();
