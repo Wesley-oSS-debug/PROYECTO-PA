@@ -2,7 +2,6 @@
 #define CUENTAS_H
 #include <string>
 
-
 using namespace std;
 
 class CuentaBancaria{
@@ -18,9 +17,9 @@ class CuentaBancaria{
 		int obtenerNumero();
 		void mostrarCuenta();
 		void asignarNumero(int);
-		void asignarSaldo(float);
+		void depositarSaldo(float);
+		void retirarSaldo(float);
 		float obtenerSaldo();
 };
-
 
 #endif

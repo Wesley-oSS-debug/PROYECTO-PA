@@ -1,4 +1,5 @@
-Oscar debito soles 1000001023 0
+Oscar debito soles 1000001023 40
+Oscar debito dolares 1000013308 123
 wesley credito soles 1000001082 24.5
-wesley credito dolares 1000001405 100.4
-yair debito dolares 1000001164 0
+wesley credito dolares 1000001405 91.4
+yair debito dolares 1000001164 31.6

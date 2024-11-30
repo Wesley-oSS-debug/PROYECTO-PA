@@ -15,6 +15,7 @@ Cliente::Cliente() {
 	correo="";
 	nCuentas=0;
 }
+
 //Asignar cuenta bancaria
 void Cliente::asignarCuenta() {
 	int num;
@@ -25,7 +26,7 @@ void Cliente::asignarCuenta() {
 	srand(time(0));
 	int min=1000000000;
     int max=1999999999;
-	num=min+(rand()%(max-min+1));
+	num=min+rand()%(max-min+1);
 	
 	cout<<"Ingrese el tipo de cuenta: "; cin>>t;
 	cout<<"Ingrese la moneda de la cuenta: "; cin>>m;
@@ -35,6 +36,7 @@ void Cliente::asignarCuenta() {
 	nCuentas++;
 	
 }
+
 //Cargar datos del txt
 void Cliente::cargarCliente(ifstream& archivo,ifstream& archivo2) {
 	string name,t,m;
@@ -47,10 +49,11 @@ void Cliente::cargarCliente(ifstream& archivo,ifstream& archivo2) {
 		archivo2>>name>>t>>m>>num>>s;
 		cuentas[i]= new CuentaBancaria(t,m);
 		cuentas[i]->asignarNumero(num);
-		cuentas[i]->asignarSaldo(s);
+		cuentas[i]->depositarSaldo(s);
 	}	
 }
 
+//Asignar Cliente
 void Cliente::asignarCliente() {
 	cin.ignore();
 	cout<<"Ingrese el nombre del cliente: "; getline(cin,nombre);
@@ -63,7 +66,7 @@ void Cliente::asignarCliente() {
 	
 }
 
-//MOSTRAR CLIENTE
+//Mostrar Cliente
 void Cliente::mostrarCliente() {
 	cout<<"  Nombre: "<<nombre<<endl
 		<<"  DNI: "<<DNI<<endl
@@ -77,36 +80,51 @@ void Cliente::mostrarCliente() {
 		cout<<"\n----------------------------------------------------------------"<<endl;
 }
 //Asignar dinero
-void Cliente::asignarDinero() {
+void Cliente::depositarDinero() {
 	int selec,indice;
 	float monto;
 	cout<<"A que cuenta bancaria desea depositar?\n"<<endl;
 	for (int i=0;i<nCuentas;i++) {
 		cout<<"Cuenta ["<<i+1<<"]:"<<endl;
 		cuentas[i]->mostrarCuenta();
+		cout<<endl;
 	}
-	cout<<"Ingrese una cuenta: "; cin>>selec;
+	cout<<"\nIngrese una cuenta: "; cin>>selec;
 	indice=selec-1;	
 	cout<<"cuenta seleccionada"<<endl;
 	cout<<"Ingrese el monto a depositar: "; cin>>monto;
-	cuentas[indice]->asignarSaldo(monto);
+	cuentas[indice]->depositarSaldo(monto);
 	cout<<"Dinero depositado"<<endl;
-	
-	
+}
+//Retirar dinero
+void Cliente::retirarDinero() {
+	int selec,indice;
+	float monto;
+	cout<<"A que cuenta bancaria desea retirar?\n"<<endl;
+	for (int i=0;i<nCuentas;i++) {
+		cout<<"Cuenta ["<<i+1<<"]:"<<endl;
+		cuentas[i]->mostrarCuenta();
+		cout<<endl;
+	}
+	cout<<"\nIngrese una cuenta: "; cin>>selec;
+	indice=selec-1;	
+	cout<<"cuenta seleccionada"<<endl;
+	cout<<"Ingrese el monto a retirar: "; cin>>monto;
+	cuentas[indice]->retirarSaldo(monto);
+	cout<<"Dinero depositado"<<endl;
 }
 
-//GUARDAR CLIENTE
+//Guardar datos del Cliente en archivos txt
 void Cliente::guardarCliente() {
+	//guardar cliente
 	ofstream archivo;
-
 	archivo.open("clientes.txt",ios::app);
 	archivo<<nombre<<" "<<DNI<<" "<<direccion<<" "<<telefono<<" "<<correo<<" "<<nCuentas<<endl;
 	archivo.close();
-	//guardar cuenta
+	//guardar su cuenta bancaria
 	string t,m;
 	int num;
 	float monto;
-	
 	ofstream archivo2;
 	archivo2.open("cuentasB.txt",ios::app);
 	for (int i=0;i<nCuentas;i++) {
@@ -116,8 +134,5 @@ void Cliente::guardarCliente() {
 		monto=cuentas[i]->obtenerSaldo();
 		archivo2<<nombre<<" "<<t<<" "<<m<<" "<<num<<" "<<monto<<endl;
 	}
-	
 	archivo2.close();
 }
-
-

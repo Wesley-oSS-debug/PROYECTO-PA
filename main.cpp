@@ -7,7 +7,7 @@ using namespace std;
 int main() {
 	
 	int op;
-	Cliente obj[1000];
+	Cliente obj[1000]; //Instancia de los objetos Cliente
 	int n=nClientes(); //numero de clientes
 	
 	//si hay clientes en el archivo cargar datos
@@ -42,6 +42,8 @@ int main() {
 			case 4:
 				break;
 			case 5:
+				break;
+			case 0:
 				cout<<"\nSaliendo del Programa...."<<endl;
 				return 0;
 				break;
