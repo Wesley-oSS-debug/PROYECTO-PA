@@ -27,15 +27,11 @@ void Cliente::asignarCuenta() {
     int max=1999999999;
 	num=min+(rand()%(max-min+1));
 	
-	archivo2.open("cuentasB.txt",ios::app);
 	cout<<"Ingrese el tipo de cuenta: "; cin>>t;
 	cout<<"Ingrese la moneda de la cuenta: "; cin>>m;
-	archivo2<<nombre<<" "<<t<<" "<<m<<" ";
 	
 	cuentas[nCuentas]= new CuentaBancaria(t,m);
 	cuentas[nCuentas]->asignarNumero(num);
-	archivo2<<cuentas[nCuentas]->obtenerNumero()<<endl;
-	archivo2.close();
 	nCuentas++;
 	
 }
@@ -43,13 +39,15 @@ void Cliente::asignarCuenta() {
 void Cliente::cargarCliente(ifstream& archivo,ifstream& archivo2) {
 	string name,t,m;
 	int num;
+	float s;
 	//cargar Clientes
 	archivo>>nombre>>DNI>>direccion>>telefono>>correo>>nCuentas;
 	//cargar cuentas bancarias
 	for (int i=0;i<nCuentas;i++) {
-		archivo2>>name>>t>>m>>num;
+		archivo2>>name>>t>>m>>num>>s;
 		cuentas[i]= new CuentaBancaria(t,m);
 		cuentas[i]->asignarNumero(num);
+		cuentas[i]->asignarSaldo(s);
 	}	
 }
 
@@ -59,19 +57,12 @@ void Cliente::asignarCliente() {
 	cout<<"Ingrese su DNI: "; cin>>DNI;
 	cin.ignore();
 	cout<<"Ingrese su direccion: "; getline(cin,direccion);
-	cout<<"Ingrse su telefono: "; cin>>telefono;
+	cout<<"Ingrese su telefono: "; cin>>telefono;
 	cout<<"Ingrese su correo: "; cin>>correo;
 	asignarCuenta();
 	
 }
-//GUARDAR CLIENTE
-void Cliente::guardarCliente() {
-	ofstream archivo;
-	archivo.open("clientes.txt",ios::app);
-	archivo<<nombre<<" "<<DNI<<" "<<direccion<<" "<<telefono<<" "<<correo<<" "<<nCuentas<<endl;
-	archivo.close();
-	
-}
+
 //MOSTRAR CLIENTE
 void Cliente::mostrarCliente() {
 	cout<<"  Nombre: "<<nombre<<endl
@@ -85,3 +76,48 @@ void Cliente::mostrarCliente() {
 		}
 		cout<<"\n----------------------------------------------------------------"<<endl;
 }
+//Asignar dinero
+void Cliente::asignarDinero() {
+	int selec,indice;
+	float monto;
+	cout<<"A que cuenta bancaria desea depositar?\n"<<endl;
+	for (int i=0;i<nCuentas;i++) {
+		cout<<"Cuenta ["<<i+1<<"]:"<<endl;
+		cuentas[i]->mostrarCuenta();
+	}
+	cout<<"Ingrese una cuenta: "; cin>>selec;
+	indice=selec-1;	
+	cout<<"cuenta seleccionada"<<endl;
+	cout<<"Ingrese el monto a depositar: "; cin>>monto;
+	cuentas[indice]->asignarSaldo(monto);
+	cout<<"Dinero depositado"<<endl;
+	
+	
+}
+
+//GUARDAR CLIENTE
+void Cliente::guardarCliente() {
+	ofstream archivo;
+
+	archivo.open("clientes.txt",ios::app);
+	archivo<<nombre<<" "<<DNI<<" "<<direccion<<" "<<telefono<<" "<<correo<<" "<<nCuentas<<endl;
+	archivo.close();
+	//guardar cuenta
+	string t,m;
+	int num;
+	float monto;
+	
+	ofstream archivo2;
+	archivo2.open("cuentasB.txt",ios::app);
+	for (int i=0;i<nCuentas;i++) {
+		t=cuentas[i]->obtenerTipo();
+		m=cuentas[i]->obtenerMoneda();
+		num=cuentas[i]->obtenerNumero();
+		monto=cuentas[i]->obtenerSaldo();
+		archivo2<<nombre<<" "<<t<<" "<<m<<" "<<num<<" "<<monto<<endl;
+	}
+	
+	archivo2.close();
+}
+
+

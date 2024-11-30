@@ -9,12 +9,11 @@ int main() {
 	
 	int op;
 	Cliente obj[1000];
-
+	
 	
 	
 	int n=nClientes();
 
-	
 	if (n>0) {
 		cargar(obj,n);
 	}
@@ -39,6 +38,7 @@ int main() {
 				listarClientes(obj,n);
 				break;
 			case 3:
+				operaciones(obj,n);
 				break;
 			case 4:
 				break;

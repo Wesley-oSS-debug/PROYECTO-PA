@@ -22,6 +22,7 @@ class Cliente{
 		void guardarCliente();
 		void cargarCliente(ifstream&,ifstream&);
 		void asignarCliente();
+		void asignarDinero();
 };
 
 #endif

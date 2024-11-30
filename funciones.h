@@ -5,6 +5,7 @@ int nClientes();
 void registrarClientes(Cliente[],int&);
 void listarClientes(Cliente[],int);
 void cargar(Cliente[],int);
+void operaciones(Cliente[],int);
 
 
 #endif

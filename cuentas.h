@@ -18,6 +18,8 @@ class CuentaBancaria{
 		int obtenerNumero();
 		void mostrarCuenta();
 		void asignarNumero(int);
+		void asignarSaldo(float);
+		float obtenerSaldo();
 };
 
 
