@@ -1,5 +1,6 @@
 #include "cliente.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -10,9 +11,12 @@ Cliente::Cliente() {
 	telefono="";
 	correo="";
 }
+//Cargar datos del txt
+void Cliente::cargarCliente(ifstream& archivo) {
+	archivo>>nombre>>DNI>>direccion>>telefono>>correo;
+}
 
 void Cliente::asignarCuenta() {
-	
 	string t;
 	string m;
 	cout<<"Ingrese el tipo de cuenta: "; cin>>t;
@@ -28,15 +32,24 @@ void Cliente::asignarCliente() {
 	cout<<"Ingrese su direccion: "; getline(cin,direccion);
 	cout<<"Ingrese su telefono: "; cin>>telefono;
 	cout<<"Ingrese su correo: "; cin>>correo;
+	
+	
 }
-
+//GUARDAR CLIENTE
+void Cliente::guardarCliente() {
+	ofstream archivo;
+	archivo.open("clientes.txt",ios::app);
+	archivo<<nombre<<" "<<DNI<<" "<<direccion<<" "<<telefono<<" "<<correo<<endl;
+	archivo.close();
+}
+//MOSTRAR CLIENTE
 void Cliente::mostrarCliente() {
-	cout<<"Nombre: "<<nombre<<endl
-		<<"DNI: "<<DNI<<endl
-		<<"Direccion: "<<direccion<<endl
-		<<"Telefono: "<<telefono<<endl
-		<<"Correo: "<<correo<<endl;
-		cout<<"El cliente tiene las siguientes cuentas: "<<endl;
-		cuentas->mostrarCuenta();
-		cout<<"----------------------------------------------------------------"<<endl;
+	cout<<"  Nombre: "<<nombre<<endl
+		<<"  DNI: "<<DNI<<endl
+		<<"  Direccion: "<<direccion<<endl
+		<<"  Telefono: "<<telefono<<endl
+		<<"  Correo: "<<correo<<endl;
+		cout<<"  El cliente tiene las siguientes cuentas: "<<endl;
+		//cuentas->mostrarCuenta();
+		cout<<"\n----------------------------------------------------------------"<<endl;
 }

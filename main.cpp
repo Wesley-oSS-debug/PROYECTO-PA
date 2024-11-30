@@ -1,36 +1,39 @@
 #include <iostream>
 #include "cliente.h"
+#include <fstream>
+#include "funciones.h"
 
 using namespace std;
 int main() {
 	
 	int op;
 	Cliente obj[10000];
-	int n=0; //numero de clientes
-
+	int n;
+	n=nClientes();
+	//prueba n
+	cout<<"n: "<<n<<endl;
+	
+	if (n>0) {
+		cargar(obj,n);
+	}
+	
+	
 	do{
-		system("cls");
+		//system("cls");
 		cout<<"\tGESTION BANCARIA"<<endl
 			<<"1. Registrar Cliente"<<endl
 			<<"2. Listar Clientes"<<endl
-			<<"3. Actualizar Cliente"<<endl
-			<<"4. Eliminar Cliente"<<endl
-			<<"5. Salir del programa"<<endl
+			<<"3. Realizar una operacion"<<endl
+			<<"4. Actualizar Cliente"<<endl
+			<<"5. Eliminar Cliente"<<endl
+			<<"0. Salir del programa"<<endl
 			<<"Seleccione una opcion: "; cin>>op;
 		switch (op) {
 			case 1:
-				system("cls");
-				obj[n].asignarCliente();
-				obj[n].asignarCuenta();
-				n++;
-				system("pause");
+				registrarClientes(obj,n);
 				break;
 			case 2:
-				system("cls");
-				for (int i=0;i<n;i++) {
-					obj[i].mostrarCliente();
-				}
-				system("pause");
+				listarClientes(obj,n);
 				break;
 			case 3:
 				break;
@@ -44,7 +47,7 @@ int main() {
 				cout<<"Ingrese una opcion valida"<<endl;
 				return 1;
 		} 
-	} while (op!=5);
+	} while (op!=0);
 	
 	return 0;
 }
