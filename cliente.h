@@ -3,7 +3,6 @@
 #include <string>
 #include "cuentas.h"
 
-
 using namespace std;
 
 class Cliente{
@@ -22,7 +21,8 @@ class Cliente{
 		void guardarCliente();
 		void cargarCliente(ifstream&,ifstream&);
 		void asignarCliente();
-		void asignarDinero();
+		void depositarDinero();
+		void retirarDinero();
 };
 
 #endif

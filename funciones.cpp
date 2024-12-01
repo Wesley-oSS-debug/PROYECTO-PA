@@ -5,8 +5,9 @@
 #include <iostream>
 using namespace std;
 
-void depositar(Cliente[],int);
 void crearCuenta(Cliente[],int);
+void depositar(Cliente[],int);
+void retirar(Cliente[],int);
 
 //Cantidad de clientes
 int nClientes() {
@@ -48,6 +49,20 @@ void actualizarDatos(Cliente obj[],int n){
 	}
 }
 
+//Mostrar y seleccionar Clientes
+int mostSelecClientes(Cliente obj[],int n) {
+	int selec,indice;
+	cout<<"Clientes:\n"<<endl;
+	for (int i=0;i<n;i++) {
+		cout<<"Cliente ["<<i+1<<"]:\n"<<endl;
+		obj[i].mostrarCliente();
+	}
+	cout<<"\nSeleccione un cliente: "; cin>>selec;
+	indice=selec-1;
+	cout<<"Cliente seleccionado"<<endl;
+	return indice;
+}
+
 //1. Registrar cliente
 void registrarClientes(Cliente obj[],int &n) {
 	system("cls");
@@ -73,11 +88,12 @@ void listarClientes(Cliente obj[],int n) {
 //3. Realizar una operacion
 void operaciones(Cliente obj[],int n) {
 	int op;
+	system("cls");
 	cout<<"OPERACIONES"<<endl
 		<<"1. Crear cuenta Bancaria"<<endl
 		<<"2. Depositar dinero a una cuenta"<<endl
 		<<"3. Retirar dinero de una cuenta"<<endl
-		<<"4. Volver al menu"<<endl
+		<<"0. Volver al menu"<<endl
 		<<"Ingrese una opcion: "; cin>>op;
 	switch (op) {
 		case 1:
@@ -87,8 +103,7 @@ void operaciones(Cliente obj[],int n) {
 			depositar(obj,n);
 			break;
 		case 3:
-			break;
-		case 4:
+			retirar(obj,n);
 			break;
 		default:
 			cout<<"Ingrese una opcion valida"<<endl;
@@ -97,30 +112,21 @@ void operaciones(Cliente obj[],int n) {
 
 //3.1 Crear cuenta bancaria
 void crearCuenta(Cliente obj[],int n) {
-	int selec,indice;
-	cout<<"Clientes:\n"<<endl;
-	for (int i=0;i<n;i++) {
-		cout<<"Cliente ["<<i+1<<"]:\n"<<endl;
-		obj[i].mostrarCliente();
-	}
-	cout<<"Seleccione un cliente: "; cin>>selec;
-	indice=selec-1;
-	cout<<"Cliente seleccionado"<<endl;
+	int indice=mostSelecClientes(obj,n);
 	obj[indice].asignarCuenta();
 	actualizarDatos(obj,n);
 }
 
 //3.2 Depositar dinero a una cuenta
 void depositar(Cliente obj[],int n) {
-	int selec,indice;
-	cout<<"Clientes:\n"<<endl;
-	for (int i=0;i<n;i++) {
-		cout<<"Cliente ["<<i+1<<"]:\n"<<endl;
-		obj[i].mostrarCliente();
-	}
-	cout<<"Seleccione un cliente: "; cin>>selec;
-	indice=selec-1;
-	cout<<"Cliente seleccionado"<<endl;
-	obj[indice].asignarDinero();
+	int indice=mostSelecClientes(obj,n);
+	obj[indice].depositarDinero();
+	actualizarDatos(obj,n);
+}
+
+//3.3 Retirar dinero de una cuenta
+void retirar(Cliente obj[],int n) {
+	int indice=mostSelecClientes(obj,n);
+	obj[indice].retirarDinero();
 	actualizarDatos(obj,n);
 }

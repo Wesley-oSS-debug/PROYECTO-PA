@@ -1,7 +1,6 @@
 #include "cuentas.h"
 #include <iostream>
 
-
 using namespace std;
 
 CuentaBancaria::CuentaBancaria(string _tipo,string _moneda) {
@@ -34,11 +33,14 @@ int CuentaBancaria::obtenerNumero() {
 	return numero;
 }
 
-void CuentaBancaria::asignarSaldo(float _saldo) {
+void CuentaBancaria::depositarSaldo(float _saldo) {
 	saldo+=_saldo;
+}
+
+void CuentaBancaria::retirarSaldo(float _saldo) {
+	saldo-=_saldo;
 }
 
 float CuentaBancaria::obtenerSaldo() {
 	return saldo;
 }
-
