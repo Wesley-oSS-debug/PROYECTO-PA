@@ -67,6 +67,7 @@ int mostSelecClientes(Cliente obj[],int n) {
 void registrarClientes(Cliente obj[],int &n) {
 	system("cls");
 	obj[n].asignarCliente();
+	obj[n].asignarCuenta();
 	obj[n].guardarCliente();
 	n++;
 	cout<<"numero cliente: "<<n<<endl;
@@ -128,5 +129,13 @@ void depositar(Cliente obj[],int n) {
 void retirar(Cliente obj[],int n) {
 	int indice=mostSelecClientes(obj,n);
 	obj[indice].retirarDinero();
+	actualizarDatos(obj,n);
+}
+
+//4. Actualizar cliente
+void actualizar(Cliente obj[],int n) {
+	int indice=mostSelecClientes(obj,n);
+	obj[indice].asignarCliente();
+	obj[indice].modificarCuenta();
 	actualizarDatos(obj,n);
 }

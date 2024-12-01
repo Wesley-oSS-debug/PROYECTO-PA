@@ -14,7 +14,6 @@ int main() {
 	if (n>0) {
 		cargar(obj,n);
 	}
-	
 	//MENU PRINCIPAL
 	do{
 		system("cls");
@@ -40,6 +39,7 @@ int main() {
 				operaciones(obj,n);
 				break;
 			case 4:
+				actualizar(obj,n);
 				break;
 			case 5:
 				break;

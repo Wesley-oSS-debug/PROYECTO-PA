@@ -23,6 +23,7 @@ class Cliente{
 		void asignarCliente();
 		void depositarDinero();
 		void retirarDinero();
+		void modificarCuenta();
 };
 
 #endif
