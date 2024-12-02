@@ -21,10 +21,9 @@ void Cliente::asignarCuenta() {
 	int num;
 	string t;
 	string m;
-	ofstream archivo2;
 	//generador de numero de cuenta
 	srand(time(0));
-	int min=1000000000;
+	int min=1222222222;
     int max=1999999999;
 	num=min+rand()%(max-min+1);
 	
@@ -35,6 +34,20 @@ void Cliente::asignarCuenta() {
 	cuentas[nCuentas]->asignarNumero(num);
 	nCuentas++;
 	
+}
+
+void Cliente::modificarCuenta() {
+	string t;
+	string m;
+	int num;
+	for (int i=0;i<nCuentas;i++) {
+		cout<<"Cuenta ["<<i+1<<"]: "<<endl;
+		cout<<"  Ingrese el tipo de cuenta: "; cin>>t;
+		cout<<"  Ingrese la moneda de la cuenta: "; cin>>m;
+		num= cuentas[i]->obtenerNumero();
+		cuentas[i]=new CuentaBancaria(t,m);
+		cuentas[i]->asignarNumero(num);
+	}
 }
 
 //Cargar datos del txt
@@ -62,12 +75,11 @@ void Cliente::asignarCliente() {
 	cout<<"Ingrese su direccion: "; getline(cin,direccion);
 	cout<<"Ingrese su telefono: "; cin>>telefono;
 	cout<<"Ingrese su correo: "; cin>>correo;
-	asignarCuenta();
-	
 }
 
 //Mostrar Cliente
 void Cliente::mostrarCliente() {
+	
 	cout<<"  Nombre: "<<nombre<<endl
 		<<"  DNI: "<<DNI<<endl
 		<<"  Direccion: "<<direccion<<endl

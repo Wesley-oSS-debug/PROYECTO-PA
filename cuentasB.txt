@@ -1,5 +1,7 @@
 Oscar debito soles 1000001023 40
 Oscar debito dolares 1000013308 123
-wesley credito soles 1000001082 24.5
-wesley credito dolares 1000001405 91.4
-yair debito dolares 1000001164 31.6
+wesley debito dolares 1000019267 345
+Yair debito soles 1000019824 25.4
+Yair credito dolares 1000020294 21
+Yair debito bolivares 1222242944 125
+juan debito dolares 1000019902 0
