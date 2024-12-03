@@ -139,3 +139,14 @@ void actualizar(Cliente obj[],int n) {
 	obj[indice].modificarCuenta();
 	actualizarDatos(obj,n);
 }
+
+//5. Eliminar Cliente
+void eliminar(Cliente obj[],int &n) {
+	int indice=mostSelecClientes(obj,n);
+	for (int i=indice;i<n;i++) {
+		obj[i]=obj[i+1];
+	}
+	obj[n].eliminarCuenta();
+	n--;
+	actualizarDatos(obj,n);
+}

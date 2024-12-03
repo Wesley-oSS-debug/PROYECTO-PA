@@ -16,25 +16,6 @@ Cliente::Cliente() {
 	nCuentas=0;
 }
 
-//Asignar cuenta bancaria
-void Cliente::asignarCuenta() {
-	int num;
-	string t;
-	string m;
-	//generador de numero de cuenta
-	srand(time(0));
-	int min=1222222222;
-    int max=1999999999;
-	num=min+rand()%(max-min+1);
-	
-	cout<<"Ingrese el tipo de cuenta: "; cin>>t;
-	cout<<"Ingrese la moneda de la cuenta: "; cin>>m;
-	
-	cuentas[nCuentas]= new CuentaBancaria(t,m);
-	cuentas[nCuentas]->asignarNumero(num);
-	nCuentas++;
-	
-}
 
 void Cliente::modificarCuenta() {
 	string t;
@@ -77,6 +58,25 @@ void Cliente::asignarCliente() {
 	cout<<"Ingrese su correo: "; cin>>correo;
 }
 
+//Asignar cuenta bancaria
+void Cliente::asignarCuenta() {
+	int num;
+	string t;
+	string m;
+	//generador de numero de cuenta
+	srand(time(0));
+	int min=100000;
+    int max=999999;
+	num=min+rand()%(max-min+1);
+	
+	cout<<"Ingrese el tipo de cuenta: "; cin>>t;
+	cout<<"Ingrese la moneda de la cuenta: "; cin>>m;
+	
+	cuentas[nCuentas]= new CuentaBancaria(t,m);
+	cuentas[nCuentas]->asignarNumero(num);
+	nCuentas++;
+	
+}
 //Mostrar Cliente
 void Cliente::mostrarCliente() {
 	
@@ -147,4 +147,13 @@ void Cliente::guardarCliente() {
 		archivo2<<nombre<<" "<<t<<" "<<m<<" "<<num<<" "<<monto<<endl;
 	}
 	archivo2.close();
+}
+
+//eliminar una cuenta bancaria
+void Cliente::eliminarCuenta() {
+	for (int i=0;i<nCuentas;i++) {
+		delete cuentas[i];
+		cuentas[i]=nullptr; //inicializar como puntero nulo
+	}
+	nCuentas=0;
 }
