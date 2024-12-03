@@ -24,6 +24,7 @@ class Cliente{
 		void depositarDinero();
 		void retirarDinero();
 		void modificarCuenta();
+		void eliminarCuenta();
 };
 
 #endif

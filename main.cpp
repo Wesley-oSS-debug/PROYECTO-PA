@@ -9,7 +9,6 @@ int main() {
 	int op;
 	Cliente obj[1000]; //Instancia de los objetos Cliente
 	int n=nClientes(); //numero de clientes
-	
 	//si hay clientes en el archivo cargar datos
 	if (n>0) {
 		cargar(obj,n);
@@ -42,6 +41,7 @@ int main() {
 				actualizar(obj,n);
 				break;
 			case 5:
+				eliminar(obj,n);
 				break;
 			case 0:
 				cout<<"\nSaliendo del Programa...."<<endl;
