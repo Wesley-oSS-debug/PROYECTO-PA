@@ -1,3 +1,4 @@
 oscar ahorros dolares 102820 0
 luciano deposito soles 103888 0
-wesley credito soles 104270 64.6
+wesley sueldo dolares 112976 100.4
+wesley debito sole 118877 54.5

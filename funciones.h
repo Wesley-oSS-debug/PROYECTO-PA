@@ -8,6 +8,6 @@ void listarClientes(Cliente[],int);
 void cargar(Cliente[],int);
 void operaciones(Cliente[],int);
 void actualizar(Cliente[],int);
-void eliminar(Cliente[],int&);
+void eliminarCliente(Cliente[],int&);
 
 #endif

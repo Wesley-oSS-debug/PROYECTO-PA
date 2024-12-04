@@ -150,10 +150,29 @@ void Cliente::guardarCliente() {
 }
 
 //eliminar una cuenta bancaria
-void Cliente::eliminarCuenta() {
-	for (int i=0;i<nCuentas;i++) {
-		delete cuentas[i];
-		cuentas[i]=nullptr; //inicializar como puntero nulo
+void Cliente::eliminarCuenta(int cen) {
+	int indice,selec;
+	if (cen==0) { //si centinela es 0 entonces elimina todas las cuentas
+		for (int i=0;i<nCuentas;i++) {
+				delete cuentas[i];
+				cuentas[i]=nullptr; //inicializar como puntero nulo
+		}
+		nCuentas=0;
+	} else if (cen==1) { //si no elimina solo la cuenta seleccionada
+		cout<<"Que cuenta bancaria desea eliminar?\n"<<endl;
+		for (int i=0;i<nCuentas;i++) {
+			cout<<"Cuenta ["<<i+1<<"]:"<<endl;				
+			cuentas[i]->mostrarCuenta();
+			cout<<endl;
+		}
+		cout<<"\nIngrese una cuenta: "; cin>>selec;
+		indice=selec-1;
+		for (int i=indice;i<nCuentas-1;i++) {
+			cuentas[i]=cuentas[i+1];
+		}
+		delete cuentas[nCuentas];
+		cuentas[nCuentas]=nullptr; //inicializar como puntero nulo
+		nCuentas--;
 	}
-	nCuentas=0;
+	
 }

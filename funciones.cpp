@@ -8,6 +8,9 @@ using namespace std;
 void crearCuenta(Cliente[],int);
 void depositar(Cliente[],int);
 void retirar(Cliente[],int);
+void mostrarOrdenAlf(Cliente[],int);
+void mostrarRecientes(Cliente[],int);
+void eliminarCuentaB(Cliente[],int);
 
 //Cantidad de clientes
 int nClientes() {
@@ -76,13 +79,35 @@ void registrarClientes(Cliente obj[],int &n) {
 
 //2. Listar Clientes
 void listarClientes(Cliente obj[],int n) {
+	int op;
 	system("cls");
+	cout<<"MOSTRAR CLIENTES"<<endl
+		<<"1. Mostrar por orden alfabetico"<<endl
+		<<"2. Mostrar por orden agregados recientemente"<<endl
+		<<"0. Volver al menu"<<endl
+		<<"Ingrese una opcion: "; cin>>op;
+	switch (op) {
+		case 1:
+			//mostrarOrdenAlf(obj,n);
+			break;
+		case 2:
+			mostrarRecientes(obj,n);
+			break;
+		default:
+			cout<<"Ingrese una opcion valida"<<endl;
+	}
+	system("cls");
+}
 
+//2.1 Mostrar por orden alfabetico
+
+//2.2 Mostrar por orden de agregados recientemente
+void mostrarRecientes(Cliente obj[],int n) {
+	system("cls");
 	for (int i=0;i<n;i++) {
 		cout<<"Cliente ["<<i+1<<"]:\n"<<endl;
 		obj[i].mostrarCliente();
 	}
-
 	system("pause");
 }
 
@@ -92,8 +117,9 @@ void operaciones(Cliente obj[],int n) {
 	system("cls");
 	cout<<"OPERACIONES"<<endl
 		<<"1. Crear cuenta Bancaria"<<endl
-		<<"2. Depositar dinero a una cuenta"<<endl
-		<<"3. Retirar dinero de una cuenta"<<endl
+		<<"2. Eliminar una cuenta Bancaria"<<endl
+		<<"3. Depositar dinero a una cuenta"<<endl
+		<<"4. Retirar dinero de una cuenta"<<endl
 		<<"0. Volver al menu"<<endl
 		<<"Ingrese una opcion: "; cin>>op;
 	switch (op) {
@@ -101,9 +127,12 @@ void operaciones(Cliente obj[],int n) {
 			crearCuenta(obj,n);
 			break;
 		case 2:
-			depositar(obj,n);
+			eliminarCuentaB(obj,n);
 			break;
 		case 3:
+			depositar(obj,n);
+			break;
+		case 4:
 			retirar(obj,n);
 			break;
 		default:
@@ -118,14 +147,21 @@ void crearCuenta(Cliente obj[],int n) {
 	actualizarDatos(obj,n);
 }
 
-//3.2 Depositar dinero a una cuenta
+//3.2 Eliminar Cuenta Bancaria
+void eliminarCuentaB(Cliente obj[],int n) {
+	int indice=mostSelecClientes(obj,n);
+	obj[indice].eliminarCuenta(1);
+	actualizarDatos(obj,n);
+}
+
+//3.3 Depositar dinero a una cuenta
 void depositar(Cliente obj[],int n) {
 	int indice=mostSelecClientes(obj,n);
 	obj[indice].depositarDinero();
 	actualizarDatos(obj,n);
 }
 
-//3.3 Retirar dinero de una cuenta
+//3.4 Retirar dinero de una cuenta
 void retirar(Cliente obj[],int n) {
 	int indice=mostSelecClientes(obj,n);
 	obj[indice].retirarDinero();
@@ -141,12 +177,12 @@ void actualizar(Cliente obj[],int n) {
 }
 
 //5. Eliminar Cliente
-void eliminar(Cliente obj[],int &n) {
+void eliminarCliente(Cliente obj[],int &n) {
 	int indice=mostSelecClientes(obj,n);
 	for (int i=indice;i<n;i++) {
 		obj[i]=obj[i+1];
 	}
-	obj[n].eliminarCuenta();
+	obj[n].eliminarCuenta(0);
 	n--;
 	actualizarDatos(obj,n);
 }

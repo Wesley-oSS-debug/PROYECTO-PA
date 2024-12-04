@@ -41,7 +41,7 @@ int main() {
 				actualizar(obj,n);
 				break;
 			case 5:
-				eliminar(obj,n);
+				eliminarCliente(obj,n);
 				break;
 			case 0:
 				cout<<"\nSaliendo del Programa...."<<endl;
